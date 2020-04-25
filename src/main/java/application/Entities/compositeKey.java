@@ -45,7 +45,7 @@ public class compositeKey implements Serializable {
         if (!(o instanceof compositeKey)) return false;
         compositeKey that = (compositeKey) o;
         return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getId(), that.getStudentId());
+                Objects.equals(getStudentId(), that.getStudentId());
     }
 
 	@Override

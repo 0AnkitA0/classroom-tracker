@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import application.DAO.ClassroomDAO;
 import application.Entities.Student;
@@ -13,13 +13,14 @@ import application.Entities.Student;
 public class ClassroomServiceImpl implements ClassroomService {
 	
 	@Autowired
-	private ClassroomDAO customerDAO;
+	private ClassroomDAO classroomDAO;
 
 
 	@Override
+	@Transactional
 	public List<Student> students(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return classroomDAO.students(id);
 	}
 
 }
