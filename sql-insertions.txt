@@ -1,0 +1,32 @@
+insert into students 
+values(1, "Ankit Anand");
+insert into students 
+values(2, "Richa Anand");
+insert into students 
+values(3, "Ashish Anand");
+insert into students 
+values(4, "Shipra Sawarn");
+insert into students 
+values(5, "Rishav Kumar");
+insert into students 
+values(6, "Donald Trump");
+
+insert into teachers 
+values(1, "Paul Geek");
+insert into teachers 
+values(2, "Tim Buchalka");
+insert into teachers 
+values(3, "Abdul Bari");
+
+insert into classrooms
+values(1,1,1);
+insert into classrooms
+values(1,2,1);
+insert into classrooms
+values(1,3,1);
+insert into classrooms
+values(2,4,2);
+insert into classrooms
+values(2,5,2);
+insert into classrooms
+values(2,6,1);
