@@ -1,0 +1,29 @@
+CREATE DATABASE  IF NOT EXISTS `classroom_tracker`;
+USE `classroom_tracker`;
+
+DROP Table if exists `students`;
+CREATE TABLE `students`(
+`id` int(11) NOT NULL AUTO_INCREMENT,
+`student_name` varchar(45) DEFAULT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DROP Table if exists `teachers`;
+CREATE TABLE `teachers`(
+`teacher_id` int(11) NOT NULL AUTO_INCREMENT,
+`teacher_name` varchar(45) DEFAULT NULL,
+PRIMARY KEY (`teacher_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+DROP Table if exists `classrooms`;
+CREATE TABLE `classrooms`(
+`id` int(11) NOT NULL,
+`student_id` int(11)  not null,
+`teacher_id` int(11) default null,
+PRIMARY KEY (`id`,`student_id`),
+UNIQUE KEY `STUDENT_UNIQUE` (`student_id`),
+KEY `FK_DETAIL_idx` (`student_id`),
+  CONSTRAINT `FK_DETAIL` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
