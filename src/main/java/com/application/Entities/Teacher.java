@@ -5,15 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="teachers")
 public class Teacher {
-	
-	public Teacher() {
-		
-	}
+
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -22,7 +21,23 @@ public class Teacher {
 	
 	@Column(name="teacher_name")
 	private String teacherName;
+	
+	@ManyToOne
+	@JoinColumn(name="class_id")
+	private Classroom classId;
+	
+    public Classroom getClassId() {
+		return classId;
+	}
 
+	public void setClassId(Classroom classId) {
+		this.classId = classId;
+	}
+
+	public Teacher() {
+		
+	}   
+	
 	public Teacher(String teacherName) {
 		this.teacherName = teacherName;
 	}
@@ -42,6 +57,7 @@ public class Teacher {
 	public void setTeacherName(String teacherName) {
 		this.teacherName = teacherName;
 	}
+	
 	
 	
 }

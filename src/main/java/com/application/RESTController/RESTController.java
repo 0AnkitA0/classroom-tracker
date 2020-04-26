@@ -25,7 +25,7 @@ public class RESTController {
 		return classroomService.classroom();
 	}
 	
-	@GetMapping("/student/{id}")
+	@GetMapping(value="/student/{id}",produces="application/json")
 	public List<Student> students(@PathVariable int id){
 	
 		return classroomService.students(id);

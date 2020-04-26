@@ -1,61 +1,66 @@
 package com.application.Entities;
 
-import javax.persistence.EmbeddedId;
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="classrooms")
 public class Classroom {
 	
-	public Classroom() {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
+	private int id;
+	
+	@OneToMany(targetEntity=Student.class,mappedBy="classroom",fetch=FetchType.LAZY)
+	@JsonIgnore
+	private List<Student> students;
+	
+	@Column(name="class_name")
+	private String className;
+	
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public Classroom(){
 		
 	}
 
-	@EmbeddedId
-	private compositeKey key;
-	
-	@ManyToOne
-	@JoinColumn(name="teacher_id")
-	private Teacher teacherId;
-	
-	
-	public long getId() {
-		return getId();
+	public int getId() {
+		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	private int id;
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+
+	public Classroom(String className) {
+		this.className = className;
+	}
 	
 	
 
-	public compositeKey getKey() {
-		return key;
-	}
-
-	public void setKey(compositeKey key) {
-		this.key = key;
-	}
-
-	public Teacher getTeacherId() {
-		return teacherId;
-	}
-
-	public void setTeacherId(Teacher teacherId) {
-		this.teacherId = teacherId;
-	}
-
-	public Classroom(compositeKey key, Teacher teacherId) {
-		this.key = key;
-		this.teacherId = teacherId;
-	}
-
-	
-	
-	
 }

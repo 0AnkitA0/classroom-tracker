@@ -6,9 +6,9 @@ import com.application.Entities.Classroom;
 import com.application.Entities.Student;
 
 public interface ClassroomDAO {
-	
-	public List<Student> students(int id);
 
-	public List<Classroom> classrooms();
+	List<Student> students(int id);
+
+	List<Classroom> classrooms();
 
 }

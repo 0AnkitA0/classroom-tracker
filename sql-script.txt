@@ -1,29 +1,78 @@
-CREATE DATABASE  IF NOT EXISTS `classroom_tracker`;
-USE `classroom_tracker`;
+DROP DATABASE IF EXISTS `classroom_trackers` ;
+CREATE DATABASE  IF NOT EXISTS `classroom_trackers`;
+USE `classroom_trackers`;
 
+DROP Table if exists `classrooms`;
 DROP Table if exists `students`;
 CREATE TABLE `students`(
-`id` int(11) NOT NULL AUTO_INCREMENT,
+`student_id` int(11) NOT NULL AUTO_INCREMENT,
 `student_name` varchar(45) DEFAULT NULL,
-PRIMARY KEY (`id`)
+`class_id` int(11) NOT NULL,
+PRIMARY KEY (`student_id`)
+
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 DROP Table if exists `teachers`;
 CREATE TABLE `teachers`(
 `teacher_id` int(11) NOT NULL AUTO_INCREMENT,
 `teacher_name` varchar(45) DEFAULT NULL,
+`class_id` int(11) NOT NULL,
 PRIMARY KEY (`teacher_id`)
+
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
-DROP Table if exists `classrooms`;
+
 CREATE TABLE `classrooms`(
 `id` int(11) NOT NULL,
-`student_id` int(11)  not null,
-`teacher_id` int(11) default null,
-PRIMARY KEY (`id`,`student_id`),
-UNIQUE KEY `STUDENT_UNIQUE` (`student_id`),
-KEY `FK_DETAIL_idx` (`student_id`),
-  CONSTRAINT `FK_DETAIL` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-  
+`class_name` varchar(45) NOT NULL,
+PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
+ALTER TABLE `students` 
+ADD foreign key (`class_id`) references `classrooms` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE `teachers`
+ADD foreign key (`class_id`) references `classrooms` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+insert into classrooms
+values(1,"VIII 'C'");
+insert into classrooms
+values(2,"VIII 'B'");
+insert into classrooms
+values(3,"VIII 'A'");
+insert into classrooms
+values(4,"IX 'A'");
+
+
+insert into students 
+values(1, "Ankit Anand",1);
+insert into students 
+values(2, "Richa Anand",4);
+insert into students 
+values(3, "Rishav Kumar",4);
+insert into students 
+values(4, "Shipra Sawarn",1);
+insert into students 
+values(5, "Hande Ercel",1);
+insert into students 
+values(6, "Zoya Hadia",1);
+insert into students 
+values(7, "Donald Trump",2);
+insert into students 
+values(8 ,"Putin",2);
+insert into students 
+values(9, "Cameron",2);
+insert into students 
+values(10, "JinPing",3);
+
+insert into teachers
+values(1,"Tim Buchalka",1);
+insert into teachers
+values(2,"Chad Derby",1);
+insert into teachers
+values(3,"Abdul Bari",1);
+insert into teachers
+values(4,"CS DOJO",2);
+insert into teachers
+values(5,"Lynda",3);
+

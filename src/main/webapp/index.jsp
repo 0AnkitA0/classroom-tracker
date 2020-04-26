@@ -1,7 +1,9 @@
 <html>
 <body>
 
-<h3>Spring CRM REST Demo</h3>
+<h3>Welcome to classroom_tracker API</h3>
+
+<br><br>
 
 <hr>
 
